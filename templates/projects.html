@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Projects | Ade & Ade Electricals{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Recent Projects</p>
+      <h1>Completed work across residential, commercial, industrial, and solar sectors.</h1>
+    </div>
+
+    <div class="filter-group" role="group" aria-label="Project filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="residential">Residential</button>
+      <button class="filter-btn" data-filter="commercial">Commercial</button>
+      <button class="filter-btn" data-filter="industrial">Industrial</button>
+      <button class="filter-btn" data-filter="solar">Solar</button>
+    </div>
+
+    <div class="project-grid">
+      <article class="project-card residential"><img src="{{ url_for('static', filename='images/hammer.jpg') }}" alt="Residential electrical project" loading="lazy" /><div><h3>Luxury Home Wiring</h3><p>Premium electrical fitting and safe wiring delivered for a modern residence.</p></div></article>
+      <article class="project-card commercial"><img src="{{ url_for('static', filename='images/tester.jpg') }}" alt="Commercial electrical project" loading="lazy" /><div><h3>Office Fit-Out</h3><p>Reliable systems and clean installations for a growing business property.</p></div></article>
+      <article class="project-card industrial"><img src="{{ url_for('static', filename='images/belt.jpg') }}" alt="Industrial installation project" loading="lazy" /><div><h3>Industrial Power Setup</h3><p>Robust installations engineered for continuous operation and performance.</p></div></article>
+      <article class="project-card solar"><img src="{{ url_for('static', filename='images/boots.jpg') }}" alt="Solar installation project" loading="lazy" /><div><h3>Solar Energy Upgrade</h3><p>Efficient solar deployment with battery storage and long-term reliability.</p></div></article>
+    </div>
+  </div>
+</section>
+{% endblock %}

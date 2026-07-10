@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ade & Ade Electricals supplies premium electrical, electronic, and solar products with professional installation and expert service across Nigeria." />
+  <title>{% block title %}Ade & Ade Electricals{% endblock %}</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/hammer.jpg') }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" />
+  <link rel="preload" as="image" href="{{ url_for('static', filename='images/hammer.jpg') }}" />
+</head>
+<body data-theme="dark">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <nav class="navbar container" id="main-nav" aria-label="Primary navigation">
+    <a href="{{ url_for('index') }}" class="brand">Ade & Ade <span>Electricals</span></a>
+
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-links">
+      <a href="{{ url_for('index') }}#about">About</a>
+      <a href="{{ url_for('products') }}">Products</a>
+      <a href="{{ url_for('projects') }}">Projects</a>
+      <a href="{{ url_for('index') }}#contact">Contact</a>
+    </div>
+
+    <button class="theme-toggle" aria-label="Toggle dark mode" type="button">☀︎</button>
+  </nav>
+
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>© 2026 Ade & Ade Electricals. Premium electrical and solar solutions, delivered with excellence.</p>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

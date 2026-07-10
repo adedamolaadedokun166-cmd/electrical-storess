@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Product Categories | Ade & Ade Electricals{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Product Categories</p>
+      <h1>Browse our premium range by category</h1>
+    </div>
+
+    <div class="filter-group" role="group" aria-label="Product category filters">
+      <a class="filter-btn {% if selected_category == 'all' %}active{% endif %}" href="{{ url_for('products') }}">All</a>
+      <a class="filter-btn {% if selected_category == 'electrical' %}active{% endif %}" href="{{ url_for('products', category='electrical') }}">Electrical</a>
+      <a class="filter-btn {% if selected_category == 'solar' %}active{% endif %}" href="{{ url_for('products', category='solar') }}">Solar</a>
+      <a class="filter-btn {% if selected_category == 'tools' %}active{% endif %}" href="{{ url_for('products', category='tools') }}">Tools</a>
+      <a class="filter-btn {% if selected_category == 'safety' %}active{% endif %}" href="{{ url_for('products', category='safety') }}">Safety</a>
+      <a class="filter-btn {% if selected_category == 'lighting' %}active{% endif %}" href="{{ url_for('products', category='lighting') }}">Lighting</a>
+    </div>
+
+    <div class="category-grid">
+      {% for product in products %}
+      <article class="category-card">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <p><strong>Category:</strong> {{ product.category|title }}</p>
+        <p><strong>SKU:</strong> {{ product.sku }}</p>
+        <p><strong>Status:</strong> {{ product.stock_status }}</p>
+        <a href="{{ url_for('product_details', sku=product.sku) }}" class="text-link">View details</a>
+      </article>
+      {% else %}
+      <p>No products found for this category.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

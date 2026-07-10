@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name if product else 'Product Details' }} | Ade & Ade Electricals{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    {% if product %}
+    <section class="detail-layout">
+      <div class="detail-gallery">
+        <img src="{{ url_for('static', filename=product.image_url) }}" alt="{{ product.name }}" />
+      </div>
+      <div class="detail-content">
+        <p class="eyebrow">Premium Product</p>
+        <h1>{{ product.name }}</h1>
+        <p class="subtitle">{{ product.description }}</p>
+        <div class="detail-meta">
+          <span class="status-badge">{{ product.stock_status }}</span>
+          <span>SKU: {{ product.sku }}</span>
+        </div>
+        <h3>Category</h3>
+        <p>{{ product.category|title }}</p>
+        <h3>Description</h3>
+        <p>{{ product.description }}</p>
+        <a href="{{ url_for('index') }}#contact" class="btn btn-primary">Request a quote</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Related products</p>
+        <h2>Explore similar premium solutions</h2>
+      </div>
+      <div class="product-grid">
+        {% for related in related_products %}
+        <article class="product-card">
+          <img src="{{ url_for('static', filename=related.image_url) }}" alt="{{ related.name }}" />
+          <div><h3>{{ related.name }}</h3><p>{{ related.description }}</p><a href="{{ url_for('product_details', sku=related.sku) }}" class="text-link">View details</a></div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% else %}
+    <p>Product not found.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

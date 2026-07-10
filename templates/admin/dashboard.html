@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | Ade & Ade Electricals</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <style>
+    body { font-family: Inter, sans-serif; background: #07111f; color: #f8fafc; margin: 0; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem 3rem; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+    .card { background: #111c2f; border: 1px solid #243244; border-radius: 14px; padding: 1rem; margin-bottom: 1.2rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+    th, td { padding: .7rem; border-bottom: 1px solid #243244; text-align: left; vertical-align: top; }
+    form.inline { display: grid; gap: .6rem; }
+    input, textarea, select, button { width: 100%; padding: .7rem; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #fff; }
+    button { background: #f59e0b; color: #07111f; font-weight: 700; cursor: pointer; }
+    .btn-secondary { background: #334155; color: white; }
+    .actions a { margin-right: .5rem; color: #fbbf24; text-decoration: none; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div>
+        <h1>Admin Dashboard</h1>
+        <p>Manage customer inquiries, subscribers, and products.</p>
+      </div>
+      <a href="{{ url_for('admin_logout') }}" class="btn-secondary" style="display:inline-block;padding:.7rem 1rem;border-radius:8px;text-decoration:none;">Logout</a>
+    </div>
+
+    <div class="card">
+      <h2>Messages</h2>
+      <table>
+        <thead><tr><th>Name</th><th>Email</th><th>Subject</th><th>Message</th><th>Time</th></tr></thead>
+        <tbody>
+          {% for message in messages %}
+          <tr><td>{{ message.name }}</td><td>{{ message.email }}</td><td>{{ message.subject }}</td><td>{{ message.message }}</td><td>{{ message.timestamp }}</td></tr>
+          {% else %}
+          <tr><td colspan="5">No messages yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Subscribers</h2>
+      <p><a href="{{ url_for('export_subscribers') }}" style="color:#fbbf24;">Export CSV</a></p>
+      <table>
+        <thead><tr><th>Email</th><th>Signed Up</th></tr></thead>
+        <tbody>
+          {% for subscriber in subscribers %}
+          <tr><td>{{ subscriber.email }}</td><td>{{ subscriber.timestamp }}</td></tr>
+          {% else %}
+          <tr><td colspan="2">No subscribers yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Add Product</h2>
+        <form class="inline" method="post" action="{{ url_for('admin_products') }}">
+          <input name="name" placeholder="Product name" required />
+          <input name="category" placeholder="Category" required />
+          <textarea name="description" placeholder="Description" required></textarea>
+          <input name="sku" placeholder="SKU" required />
+          <select name="stock_status">
+            <option value="In Stock">In Stock</option>
+            <option value="Limited Stock">Limited Stock</option>
+            <option value="Out of Stock">Out of Stock</option>
+          </select>
+          <input name="image_url" placeholder="Image URL" required />
+          <button type="submit">Save Product</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Products</h2>
+        <table>
+          <thead><tr><th>Name</th><th>SKU</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            {% for product in products %}
+            <tr>
+              <td>{{ product.name }}</td>
+              <td>{{ product.sku }}</td>
+              <td>{{ product.stock_status }}</td>
+              <td class="actions">
+                <a href="{{ url_for('admin_products', edit_id=product.id) }}">Edit</a>
+                <a href="{{ url_for('delete_product', product_id=product.id) }}">Delete</a>
+              </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="4">No products yet.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {% if edit_product %}
+    <div class="card">
+      <h2>Edit Product</h2>
+      <form class="inline" method="post" action="{{ url_for('admin_products', edit_id=edit_product.id) }}">
+        <input name="name" placeholder="Product name" value="{{ edit_product.name }}" required />
+        <input name="category" placeholder="Category" value="{{ edit_product.category }}" required />
+        <textarea name="description" placeholder="Description" required>{{ edit_product.description }}</textarea>
+        <input name="sku" placeholder="SKU" value="{{ edit_product.sku }}" required />
+        <select name="stock_status">
+          <option value="In Stock" {% if edit_product.stock_status == 'In Stock' %}selected{% endif %}>In Stock</option>
+          <option value="Limited Stock" {% if edit_product.stock_status == 'Limited Stock' %}selected{% endif %}>Limited Stock</option>
+          <option value="Out of Stock" {% if edit_product.stock_status == 'Out of Stock' %}selected{% endif %}>Out of Stock</option>
+        </select>
+        <input name="image_url" placeholder="Image URL" value="{{ edit_product.image_url }}" required />
+        <button type="submit">Update Product</button>
+      </form>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>

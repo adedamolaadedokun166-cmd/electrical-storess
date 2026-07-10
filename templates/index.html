@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}Ade & Ade Electricals | Premium Electrical & Solar Solutions{% endblock %}
+
+{% block content %}
+<header class="hero" id="top">
+  <div class="hero-content container">
+    <p class="eyebrow">Premium electrical & solar solutions</p>
+    <h1>Reliable power, refined installations, and premium products.</h1>
+    <p class="subtitle">
+      We specialize in electrical, electronic, and solar products for homes, businesses, and industrial sites with a focus on quality workmanship and dependable service.
+    </p>
+    <div class="actions">
+      <a href="#products" class="btn btn-primary">Explore catalog</a>
+      <a href="#contact" class="btn btn-secondary">Request a quote</a>
+    </div>
+
+    <div class="hero-badges">
+      <div><strong>24/7</strong><span>Support</span></div>
+      <div><strong>100%</strong><span>Certified stock</span></div>
+      <div><strong>Fast</strong><span>Nationwide delivery</span></div>
+    </div>
+  </div>
+</header>
+
+<main id="main-content">
+  <section class="section intro-section reveal" id="about">
+    <div class="container intro-grid">
+      <div>
+        <p class="eyebrow">Why professionals choose us</p>
+        <h2>Built for performance, safety, and long-term value.</h2>
+        <p>
+          From residential wiring to commercial installations and solar systems, Ade & Ade Electricals delivers quality products, certified workmanship, and responsive support you can count on.
+        </p>
+      </div>
+      <div class="intro-card">
+        <h3>Crafted around excellence</h3>
+        <ul>
+          <li>Premium electrical, electronic, and solar products</li>
+          <li>Certified installation teams and technical guidance</li>
+          <li>Responsive support from sourcing to after-sales care</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section products-section reveal" id="products">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Featured products</p>
+        <h2>Premium solutions for modern buildings and power systems.</h2>
+      </div>
+
+      <div class="product-grid">
+        {% for product in products %}
+        <article class="product-card" data-category="{{ product.category }}">
+          <img src="{{ url_for('static', filename=product.image_url) }}" alt="{{ product.name }}" loading="lazy" />
+          <div>
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <a href="{{ url_for('product_details', sku=product.sku) }}" class="text-link">View details</a>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section services-section reveal" id="services">
+    <div class="container services-grid">
+      <div>
+        <p class="eyebrow">Our services</p>
+        <h2>Professional service coverage from installation to maintenance.</h2>
+        <p>
+          We offer dependable support for every stage of electrical and solar projects, from design and supply to installation and ongoing maintenance.
+        </p>
+      </div>
+      <div class="service-list">
+        <div class="service-item"><h3>Surface wiring installation</h3><p>Neat, safe, and professional installations for residences and commercial buildings.</p></div>
+        <div class="service-item"><h3>Conduit & trunking wiring</h3><p>Structured cable management with lasting performance and clean aesthetics.</p></div>
+        <div class="service-item"><h3>Complete solar installation</h3><p>End-to-end solar solutions, from panel supply to inverter and battery setup.</p></div>
+        <div class="service-item"><h3>Electrical maintenance</h3><p>Prompt repairs, troubleshooting, and preventive maintenance for dependable systems.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section projects-section reveal" id="projects">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Recent Projects</p>
+        <h2>Showcasing quality work across residential, commercial, and solar projects.</h2>
+      </div>
+      <div class="project-grid">
+        <article class="project-card residential"><img src="{{ url_for('static', filename='images/hammer.jpg') }}" alt="Residential wiring project" loading="lazy" /><div><h3>Residential wiring</h3><p>Modern home electrical upgrades with clean finishes and reliable wiring.</p></div></article>
+        <article class="project-card commercial"><img src="{{ url_for('static', filename='images/tester.jpg') }}" alt="Commercial electrical installation" loading="lazy" /><div><h3>Commercial fit-out</h3><p>Safe and efficient setups for offices, shops, and retail spaces.</p></div></article>
+        <article class="project-card industrial"><img src="{{ url_for('static', filename='images/belt.jpg') }}" alt="Industrial installation project" loading="lazy" /><div><h3>Industrial installation</h3><p>Robust systems delivered for facilities with demanding operational needs.</p></div></article>
+        <article class="project-card solar"><img src="{{ url_for('static', filename='images/boots.jpg') }}" alt="Solar installation project" loading="lazy" /><div><h3>Solar installation</h3><p>High-performance solar deployments that improve power reliability.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section newsletter-section reveal">
+    <div class="container newsletter-card">
+      <div>
+        <p class="eyebrow">Newsletter</p>
+        <h2>Stay updated with offers, product launches, and project insights.</h2>
+      </div>
+      <form class="newsletter-form" id="newsletter-form" novalidate>
+        <label class="sr-only" for="newsletter-email">Email address</label>
+        <input id="newsletter-email" name="email" type="email" placeholder="Enter your email" required />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section contact-section reveal" id="contact">
+    <div class="container contact-card">
+      <div>
+        <p class="eyebrow">Contact us</p>
+        <h2>Let’s discuss your next project.</h2>
+        <p>Call, message, or visit us for product availability, quotations, and expert electrical or solar recommendations.</p>
+        <ul class="contact-list">
+          <li><strong>Phone:</strong> <a href="tel:+2348074105370">08074105370</a></li>
+          <li><strong>WhatsApp:</strong> <a href="https://wa.me/2348074105370">+234 807 410 5370</a></li>
+          <li><strong>Email:</strong> <a href="mailto:adedamolaadedokun166@gmail.com">adedamolaadedokun166@gmail.com</a></li>
+          <li><strong>Address:</strong> Plot 16, Unity Estate, Iyana Iyesi, Ota, Ogun State, Nigeria.</li>
+          <li><strong>Hours:</strong> Mon–Sat, 8:00 AM – 6:00 PM</li>
+        </ul>
+      </div>
+      <form class="contact-form" id="contact-form" novalidate>
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="tel" name="phone" placeholder="Phone number" required />
+        <input type="email" name="email" placeholder="Email address" required />
+        <input type="text" name="subject" placeholder="Subject" required />
+        <textarea rows="4" name="message" placeholder="Tell us about your project" required></textarea>
+        <button type="submit" class="btn btn-primary">Send message</button>
+      </form>
+    </div>
+  </section>
+</main>
+{% endblock %}

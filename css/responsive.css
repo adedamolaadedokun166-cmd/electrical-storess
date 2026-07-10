@@ -1,0 +1,24 @@
+@media (max-width: 1000px) {
+  .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .brand-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .contact-card, .intro-grid, .services-grid, .faq-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+  .navbar { border-radius: 1.1rem; padding: 0.9rem 1rem; position: relative; top: 0; }
+  .menu-toggle, .theme-toggle { display: inline-flex; flex-direction: column; gap: 0.22rem; }
+  .menu-toggle span { width: 1.4rem; height: 2px; background: var(--text); border-radius: 999px; }
+  .nav-links {
+    display: none; position: absolute; top: 4.6rem; right: 1rem; left: 1rem; flex-direction: column; gap: 0.8rem; padding: 1rem;
+    border-radius: 1rem; background: rgba(7, 17, 31, 0.95); border: 1px solid var(--border);
+  }
+  .nav-links.open { display: flex; }
+  .hero-content { min-height: auto; padding-top: 2rem; }
+  .product-grid, .stats-grid, .features-grid, .project-grid, .brand-grid, .team-grid, .category-grid, .detail-layout { grid-template-columns: 1fr; }
+  .testimonial-slider { grid-template-columns: 1fr; }
+  .slider-btn { display: none; }
+  .newsletter-card { flex-direction: column; align-items: flex-start; }
+  .section { padding: 4rem 0; }
+}

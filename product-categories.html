@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Categories | Ade & Ade Electricals</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body data-theme="dark">
+  <nav class="navbar container" id="main-nav" aria-label="Primary navigation">
+    <a href="index.html" class="brand">Ade & Ade <span>Electricals</span></a>
+    <div class="nav-links">
+      <a href="index.html#about">About</a>
+      <a href="product-categories.html">Products</a>
+      <a href="projects.html">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="theme-toggle" aria-label="Toggle dark mode" type="button">☀︎</button>
+  </nav>
+
+  <main class="container section">
+    <div class="section-heading">
+      <p class="eyebrow">Product Categories</p>
+      <h1>Browse our premium range by category</h1>
+    </div>
+
+    <div class="filter-group" role="group" aria-label="Product category filters">
+      <button class="filter-btn active" data-category="all">All</button>
+      <button class="filter-btn" data-category="fittings">Electrical Fittings</button>
+      <button class="filter-btn" data-category="electronic">Electronic Fittings</button>
+      <button class="filter-btn" data-category="solar">Solar Products</button>
+      <button class="filter-btn" data-category="lighting">Lighting</button>
+      <button class="filter-btn" data-category="wiring">Wiring Accessories</button>
+      <button class="filter-btn" data-category="safety">Safety Equipment</button>
+    </div>
+
+    <div class="category-grid">
+      <article class="category-card" data-category="fittings"><h3>Electrical Fittings</h3><p>Switches, sockets, connectors, and premium installation accessories.</p><a href="product-details.html" class="text-link">View details</a></article>
+      <article class="category-card" data-category="electronic"><h3>Electronic Fittings</h3><p>Smart and reliable electronic accessories for modern power systems.</p><a href="product-details.html" class="text-link">View details</a></article>
+      <article class="category-card" data-category="solar"><h3>Solar Products</h3><p>Panels, batteries, inverters, and charge controllers for efficient solar power.</p><a href="product-details.html" class="text-link">View details</a></article>
+      <article class="category-card" data-category="lighting"><h3>Lighting</h3><p>LED bulbs, decorative lighting, and high-performance luminaires.</p><a href="product-details.html" class="text-link">View details</a></article>
+      <article class="category-card" data-category="wiring"><h3>Wiring Accessories</h3><p>Conduits, extension boxes, junctions, and essential cable accessories.</p><a href="product-details.html" class="text-link">View details</a></article>
+      <article class="category-card" data-category="safety"><h3>Safety Equipment</h3><p>Protective gear and industrial safety products for secure operations.</p><a href="product-details.html" class="text-link">View details</a></article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>© 2026 Ade & Ade Electricals.</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
